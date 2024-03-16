@@ -6,4 +6,4 @@ const Map=()=> {
 
     );
 }
-export default Header;
+export default Map;

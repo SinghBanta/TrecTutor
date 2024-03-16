@@ -5,4 +5,4 @@ const PlaceDetails=()=> {
 
     );
 }
-export default Header;
+export default PlaceDetails;
