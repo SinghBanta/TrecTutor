@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Button,Card,CardMedia,CardContent,CardAction, Chip } from '@material-ui/core';
+import { Box, Typography, Button, Card, CardMedia, CardContent, Chip, CardActions } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import  Rating  from '@material-ui/lab/Rating';
@@ -13,20 +13,24 @@ const PlaceDetails=({place})=> {
         <Card elevation={6}>
             <CardMedia
                 style={{ height: 350}}
-                image={place.photo ? place.photo.image.large.url : 'https://media-cdn.tripadvisor.com/media/photo-s/0f/93/8f/53/urban-cafe.jpg'}
+                image={place.photo ? place.photo.images.small.url : 'https://media-cdn.tripadvisor.com/media/photo-s/0f/93/8f/53/urban-cafe.jpg'}
                 title={place.name}
 
             />
             <CardContent>
                 <Typography gutterBottom variant="h5">{place.name}</Typography>
+                <Box display="flex" justifyContent="space-between" my={2}>
+          <Rating name="read-only" value={Number(place.rating)} readOnly />
+          <Typography component="legend">{place.num_reviews} review{place.num_reviews > 1 && 's'}</Typography>
+        </Box>
                 <Box display={"flex"} justifyContent="space-between">
                     <Typography variant="subtitle1">Price</Typography>
-                    <Typography gutterBottom variant="subtitle1">{place.price.level}</Typography>
+                    <Typography gutterBottom variant="subtitle1">Rs {place.price}</Typography>
 
                 </Box>
                 <Box display={"flex"} justifyContent="space-between">
                     <Typography variant="subtitle1">Ranking</Typography>
-                    <Typography gutterBottom variant="subtitle1">{place.Ranking}</Typography>
+                    <Typography gutterBottom variant="subtitle1">{place.ranking}</Typography>
 
                 </Box>
                 {place?.award?.map((award) => (
@@ -44,12 +48,12 @@ const PlaceDetails=({place})=> {
                    </Typography> 
                 )}
                 {place?.phone && (
-                   <Typography gutterBottom variant="subtitle2" color="textSecondary" className={classes.subspacing}>
-                       <PhoneIconIcon /> {place.phone}
+                   <Typography gutterBottom variant="subtitle2" color="textSecondary" className={classes.spacing}>
+                       <PhoneIcon /> {place.phone}
                    </Typography> 
                 )}   
 
-                <CardAction>
+                <CardActions>
                    <Button size="small" color="primary" onClick={()=> window.open(place.web_url, '_blank') }>
                        TrecTutor
                    </Button> 
@@ -57,7 +61,7 @@ const PlaceDetails=({place})=> {
                        Website
                    </Button>
 
-                </CardAction>     
+                </CardActions>     
                 
                 </CardContent>
 
@@ -66,3 +70,4 @@ const PlaceDetails=({place})=> {
     );
 }
 export default PlaceDetails;
+
