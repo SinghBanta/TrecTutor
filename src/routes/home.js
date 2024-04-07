@@ -12,10 +12,10 @@ function Home() {
       <Hero
         cName="hero"
         heroImg={HomeImg}
-        title="Complete your journey with Trectutor"
+        title="Complete your journey with TrecTutor"
         text="Search admires near you"
-        buttonText="Search"
-        url="/"
+        buttonText="Explore Now for Free"
+        url="/main"
         btnClass="show"
       />
       <Destination />

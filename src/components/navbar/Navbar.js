@@ -2,6 +2,7 @@ import { Component } from "react";
 import "./NavbarStyles.css";
 import { Link } from "react-router-dom";
 import { MenuItems } from "./MenuItems";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 class Navbar extends Component {
   state = { clicked: false };
@@ -11,7 +12,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="NavbarItems">
-        <h1 className="navbar-logo">Trectutor</h1>
+        <h1 className="navbar-logo">TrecTutor</h1>
         <div className="menu-icons" onClick={this.handleClick}>
           <i
             className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}
@@ -28,7 +29,13 @@ class Navbar extends Component {
               </li>
             );
           })}
-          <button>Sign Up</button>
+          <SignedOut>
+            <SignInButton afterSignUpUrl="/main" afterSignInUrl="/main"/>
+          </SignedOut>
+          <SignedIn>
+            <UserButton afterSignOutUrl='/'/>
+          </SignedIn>
+
         </ul>
       </nav>
     );

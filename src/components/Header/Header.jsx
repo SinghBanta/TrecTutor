@@ -3,6 +3,8 @@ import { AppBar, Toolbar, Typography, InputBase, Box } from "@material-ui/core";
 import { Autocomplete } from "@react-google-maps/api";
 import SearchIcon from "@material-ui/icons/Search";
 import useStyles from "./styles";
+import { SignedIn, UserButton } from "@clerk/clerk-react";
+
 
 const Header = ({ setCoordinates }) => {
   const classes = useStyles();
@@ -21,7 +23,7 @@ const Header = ({ setCoordinates }) => {
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
         <Typography variant="h5" className={classes.title}>
-          TrecTutor
+          <a href="/" style={{textDecoration:"none", color:"white"}}>TrecTutor</a>
         </Typography>
         <Box display="flex">
           <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
@@ -36,6 +38,9 @@ const Header = ({ setCoordinates }) => {
               />
             </div>
           </Autocomplete>
+          <SignedIn>
+            <UserButton afterSignOutUrl='/'/>
+          </SignedIn>
         </Box>
       </Toolbar>
     </AppBar>
